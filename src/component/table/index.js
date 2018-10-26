@@ -1,5 +1,6 @@
 import React from "react";
 import { Table } from "antd";
+const PropTypes = require('prop-types');
 
 const columns = [{
   title: '时间',
@@ -23,61 +24,11 @@ const columns = [{
   align: 'center'
 }];
 
-const data = [{
-  key: '1',
-  time: '201810101244',
-  code: '00001',
-  updown: '上游',
-  speed: '2m/s',
-  align: 'center'
-}, {
-  key: '2',
-  time: '201810101244',
-  code: '00001',
-  updown: '上游',
-  speed: '2m/s',
-  align: 'center'
-}, {
-  key: '3',
-  time: '201810101244',
-  code: '00001',
-  updown: '上游',
-  speed: '2m/s',
-  align: 'center'
-}, {
-  key: '4',
-  time: '201810101244',
-  code: '00001',
-  updown: '上游',
-  speed: '2m/s',
-  align: 'center'
-}, {
-  key: '5',
-  time: '201810101244',
-  code: '00001',
-  updown: '上游',
-  speed: '2m/s',
-  align: 'center'
-}, {
-  key: '6',
-  time: '201810101244',
-  code: '00001',
-  updown: '上游',
-  speed: '2m/s',
-  align: 'center'
-}, {
-  key: '7',
-  time: '201810101244',
-  code: '00001',
-  updown: '上游',
-  speed: '2m/s',
-  align: 'center'
-}];
-
-const Mtable = () => {
+const Mtable = (props) => {
   return (
-      <Table columns={columns} dataSource={data} size="small"  style={{height:"488px"}}/>
+      <Table columns={columns} dataSource={props.data} size="small"  style={{height:"488px"}}/>
   );
 };
 
+Mtable.propTypes={data: PropTypes.array}
 export default Mtable;

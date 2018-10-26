@@ -19,6 +19,7 @@ const model = {
   actions: {
     // 模拟获取用户信息
     async getUserinfo(params = {}) {
+      debugger
       const user = { id: params.id, username: "admin" };
       this.upadteUserinfo(user);
       return user;

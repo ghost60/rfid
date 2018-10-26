@@ -3,9 +3,12 @@ import { createStore } from "retalk";
 
 import ModelApp from "../models/app";
 import ModelTest from "../models/test";
+import ModelFfid from "../models/rfid";
+
 const store = createStore({
   app: ModelApp,
-  test: ModelTest
+  test: ModelTest,
+  rfid: ModelFfid
 });
 
 export default store;

@@ -1,29 +1,42 @@
 import React from 'react'
 import ReactEcharts from 'echarts-for-react'
+const PropTypes = require('prop-types')
 
 export default class Charts extends React.Component {
+  static propTypes = {
+    data: PropTypes.object,
+  }; 
   constructor(props) {
     super(props)
   }
   getOption() {
+    let {data} =this.props;
     let option = {
       xAxis: {
         type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        data: data.datax
       },
       yAxis: {
         type: 'value'
       },
+      legend: {
+        data: ['上游', '下游']
+      },
+      tooltip: {
+        trigger: 'axis',
+      },
       series: [
         {
-          data: [120, 200, 150, 80, 70, 110, 130],
+          name: '上游',
+          data: data.datayup,
           type: 'bar',
           itemStyle: {
             color: '#66bb6a'
           },
         },
         {
-          data: [120, 200, 150, 80, 70, 110, 130],
+          name: '下游',
+          data: data.dataydown,
           type: 'bar',
           itemStyle: {
             color: '#0099ff'

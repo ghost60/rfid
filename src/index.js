@@ -3,14 +3,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import registerServiceWorker from "./registerServiceWorker";
-// import Root from "./container/root";
-import Show from "./container/show";
+// import App from "./container/root";
+import App from "./container/index";
 
 /** 公共样式 **/
 import "./styles/css.css";
 import "./styles/less.less";
 
-ReactDOM.render(<Show />, document.getElementById("app-root"));
+ReactDOM.render(<App />, document.getElementById("app-root"));
 
 registerServiceWorker();
 

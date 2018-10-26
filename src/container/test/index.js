@@ -50,7 +50,6 @@ export default class TestPageContainer extends React.Component {
       mokeAjax: [], // 用于测试ajax请求
       count: 0, // 数字
     };
-    debugger
   }
 
   /** react生命周期 - 废弃 - 组件初始化完毕DOM挂载之前 触发1次 **/
@@ -68,6 +67,7 @@ export default class TestPageContainer extends React.Component {
     console.log('obj的扩展运算符测试：', b);
 
     // 获取用户信息测试
+    debugger
     this.props.actions.getUserinfo({ id: 1 }).then(res => {
       console.log('获取用户信息测试：', res);
     });
@@ -82,7 +82,7 @@ export default class TestPageContainer extends React.Component {
    */
   shoudComponentUpdate(nextProps, nextState) {
     debugger
-    return true;
+    return false;
   }
 
   /**
@@ -100,11 +100,11 @@ export default class TestPageContainer extends React.Component {
    */
   static getDerivedStateFromProps(nextProps, prevState) {
     debugger
-    if (nextProps.count !== prevState.count) {
-      return {
-        count: nextProps.count,
-      };
-    }
+    // if (nextProps.count !== prevState.count) {
+    //   return {
+    //     count: nextProps.count,
+    //   };
+    // }
     return null;
   }
 
