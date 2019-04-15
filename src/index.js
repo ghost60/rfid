@@ -1,18 +1,15 @@
 /** APP入口 **/
 import React from "react";
 import ReactDOM from "react-dom";
-
 import registerServiceWorker from "./registerServiceWorker";
-// import App from "./container/root";
-import App from "./container/index";
-
-/** 公共样式 **/
+import App from "./container/show/index";
 import "./styles/css.css";
-import "./styles/less.less";
+// import "@babel/polyfill";
+import "babel-polyfill";
 
 ReactDOM.render(<App />, document.getElementById("app-root"));
 
-registerServiceWorker();
+// registerServiceWorker();
 
 if (module.hot) {
   module.hot.accept();

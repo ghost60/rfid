@@ -11,13 +11,21 @@ export default class Charts extends React.Component {
   }
   getOption() {
     let {data} =this.props;
+    let datetime=data.dataup.map((i,index)=>index)
     let option = {
       xAxis: {
         type: 'category',
-        data: data.datax
+        data: datetime
       },
       yAxis: {
         type: 'value'
+      },
+      grid: {
+        top: "12%",
+        left: "3%",
+        right: "4%",
+        bottom: "5%",
+        containLabel: true
       },
       legend: {
         data: ['上游', '下游']
@@ -28,7 +36,7 @@ export default class Charts extends React.Component {
       series: [
         {
           name: '上游',
-          data: data.datayup,
+          data: data.dataup,
           type: 'bar',
           itemStyle: {
             color: '#66bb6a'
@@ -36,7 +44,7 @@ export default class Charts extends React.Component {
         },
         {
           name: '下游',
-          data: data.dataydown,
+          data: data.datadown,
           type: 'bar',
           itemStyle: {
             color: '#0099ff'
@@ -49,7 +57,7 @@ export default class Charts extends React.Component {
 
   render() {
     return (
-      <ReactEcharts option={this.getOption()} style={{ height: "238px" }} />
+      <ReactEcharts option={this.getOption()} style={{ height: "165px" }} />
     )
   }
 }

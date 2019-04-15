@@ -1,24 +1,23 @@
-/**
- * 基本Model app.js, 在src/store/index.js中被挂载到store上，命名为app
- * 可用于存放通用信息，比如用户数据、角色、权限、省市区等通用数据
- * **/
+import {
+  message
+} from "antd";
+import request from '../util/request'
+
 const model = {
-  /** store数据 **/
   state: {
-    tableData: [],
     barData: {
-      datax: [],
-      datayup: [],
-      dataydown: []
+      datetime: [],
+      dataup: [],
+      datadown: []
     },
     lineData: {
-      datax: [],
-      datay: []
+      datetime: [],
+      data: []
     },
     status: {
-      local:'',
-      link:'',
-      signal:''
+      local: '',
+      link: '',
+      signal: ''
     }
   },
   /** reducers **/
@@ -26,34 +25,63 @@ const model = {
     // reducer - 更新用户信息
     upadteTableData(state, payload) {
       // 执行这里就会更新state中的数据
-      return { ...state, tableData: payload };
+      return { ...state,
+        tableData: payload
+      };
     },
     upadteBarData(state, payload) {
-      return { ...state, barData: payload };
+      return { ...state,
+        barData: payload
+      };
     },
     upadteLineData(state, payload) {
-      return { ...state, lineData: payload };
+      return { ...state,
+        lineData: payload
+      };
     },
     upadteStatus(state, payload) {
-      return { ...state, status: payload };
+      return { ...state,
+        status: payload
+      };
     }
   },
   /** actions **/
   actions: {
     async getTableData(params = {}) {
-      const data = tdata;
-      this.upadteTableData(data);
-      return data;
+      // const data = tdata;
+      try {
+        let datetime = params;
+        // const data = await request(`http://result.eolinker.com/axdDfrd9dfe1cfb7c86511c1b4504c85e9565ca52b2c719?uri=getRecordData&datetime=${datetime}`)
+        const data = await request(`http://localhost:8888?uri=getRecordData&datetime=${datetime}`)
+        this.upadteTableData(data);
+        return data;
+      } catch (err) {
+        message.error(err);
+      }
     },
     async getBarData(params = {}) {
-      const data = bdata;
-      this.upadteBarData(data);
-      return data;
+      // const data = bdata;
+      try {
+        let datetime = params;
+        // const data = await request(`http://result.eolinker.com/axdDfrd9dfe1cfb7c86511c1b4504c85e9565ca52b2c719?uri=get24HourDirectionData&datetime=${datetime}`)
+        const data = await request(`http://localhost:8888?uri=get24HourDirectionData&datetime=${datetime}`)
+        this.upadteBarData(data);
+        return data;
+      } catch (err) {
+        message.error(err);
+      }
     },
     async getLineData(params = {}) {
-      const data = ldata;
-      this.upadteLineData(data);
-      return data;
+      // const data = ldata;
+      try {
+        let datetime = params;
+        // const data = await request(`http://result.eolinker.com/axdDfrd9dfe1cfb7c86511c1b4504c85e9565ca52b2c719?uri=get24HourAmountData&datetime=${datetime}`)
+        const data = await request(`http://localhost:8888?uri=get24HourAmountData&datetime=${datetime}`)
+        this.upadteLineData(data);
+        return data;
+      } catch (err) {
+        message.error(err);
+      }
     },
     async getStatus(params = {}) {
       const data = status;
@@ -69,67 +97,96 @@ const tdata = [{
   code: '00001',
   updown: '上游',
   speed: '2m/s',
-  align: 'center'
 }, {
   key: '2',
   time: '201810101244',
   code: '00001',
   updown: '上游',
   speed: '2m/s',
-  align: 'center'
 }, {
   key: '3',
   time: '201810101244',
   code: '00001',
   updown: '上游',
   speed: '2m/s',
-  align: 'center'
 }, {
   key: '4',
   time: '201810101244',
   code: '00001',
   updown: '上游',
   speed: '2m/s',
-  align: 'center'
 }, {
   key: '5',
   time: '201810101244',
   code: '00001',
   updown: '上游',
   speed: '2m/s',
-  align: 'center'
 }, {
   key: '6',
   time: '201810101244',
   code: '00001',
   updown: '上游',
   speed: '2m/s',
-  align: 'center'
 }, {
   key: '7',
   time: '201810101244',
   code: '00001',
   updown: '上游',
   speed: '2m/s',
-  align: 'center'
+}, {
+  key: '8',
+  time: '201810101244',
+  code: '00001',
+  updown: '上游',
+  speed: '2m/s',
+}, {
+  key: '9',
+  time: '201810101244',
+  code: '00001',
+  updown: '上游',
+  speed: '2m/s',
+}, {
+  key: '10',
+  time: '201810101244',
+  code: '00001',
+  updown: '上游',
+  speed: '2m/s',
+}, {
+  key: '11',
+  time: '201810101244',
+  code: '00001',
+  updown: '上游',
+  speed: '2m/s',
+}, {
+  key: '12',
+  time: '201810101244',
+  code: '00001',
+  updown: '上游',
+  speed: '2m/s',
+}, {
+  key: '13',
+  time: '201810101244',
+  code: '00001',
+  updown: '上游',
+  speed: '2m/s',
 }];
 
 const ldata = {
-  datax: ['1', '2', '3', '4', '5', '6', '7'],
-  datay: [120, 200, 150, 80, 70, 110, 130]
+  datetime: ['1', '2', '3', '4', '5', '6', '7'],
+  data: [120, 200, 150, 80, 70, 110, 130]
 
 }
 
 const bdata = {
-  datax: ['1', '2', '3', '4', '5', '6', '7'],
-  datayup: [120, 200, 150, 80, 70, 110, 130],
-  dataydown: [110, 210, 130, 50, 60, 100, 110],
+  datetime: ['1', '2', '3', '4', '5', '6', '7'],
+  dataup: [120, 200, 150, 80, 70, 110, 130],
+  datadown: [110, 210, 130, 50, 60, 100, 110],
 }
 
 const status = {
-  local:'鱼道口',
-  link:'已连接',
-  signal:'信号'
+  local: '鱼道口',
+  link: '已连接',
+  signal: '信号'
 }
 
 export default model;

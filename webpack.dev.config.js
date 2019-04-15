@@ -4,14 +4,13 @@ const path = require('path'); // 获取绝对路径用
 const webpack = require('webpack'); // webpack核心
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 动态生成html插件
 const HappyPack = require('happypack'); // 多线程编译
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 const PUBLIC_PATH = '/'; // 基础路径
 module.exports = {
   mode: 'development',
   entry: [
     'webpack-hot-middleware/client?reload=true&path=/__webpack_hmr', // webpack热更新插件，就这么写
-    '@babel/polyfill',
+    'babel-polyfill',
     './src/index.js', // 项目入口
     './dll/vendor.dll.js',
   ],
@@ -101,36 +100,16 @@ module.exports = {
         PUBLIC_URL: PUBLIC_PATH,
       }),
     }),
-    new webpack.DllReferencePlugin({
-      context: __dirname,
-      /**
-           下面这个地址对应webpack.dll.config.js中生成的那个json文件的路径
-           这样webpack打包时，就先直接去这个json文件中把那些预编译的资源弄进来
-           **/
-      manifest: require('./dll/vendor-manifest.json'),
-    }),
     new HappyPack({
       loaders: ['babel-loader'],
     }),
     new HtmlWebpackPlugin({
       //根据模板插入css/js等生成最终HTML
       filename: 'index.html', //生成的html存放路径，相对于 output.path
-      favicon: './public/favicon.png', // 自动把根目录下的favicon.ico图片加入html
       template: './public/index.ejs', //html模板路径
       inject: true, // 是否将js放在body的末尾
       templateParameters: {
         dll: "<script src='/vendor.dll.js'></script>",
-        manifest: '',
-      },
-    }),
-    // 自动生成各种类型的favicon，这么做是为了以后各种设备上的扩展功能，比如PWA桌面图标
-    new FaviconsWebpackPlugin({
-      logo: './public/favicon.png',
-      prefix: 'icons/',
-      icons: {
-        android: false,
-        firefox: false,
-        appleStartup: false,
       },
     }),
   ],
